@@ -7,21 +7,17 @@ app = typer.Typer()
 def main():
     import sys
 
-    from PySide6 import QtGui, QtWidgets
+    from PySide6 import QtWidgets
 
     from aisportvideo.ui.home import HomeWidget
+    from aisportvideo.utils.layout import center_widget_on_screen
 
     qtapp = QtWidgets.QApplication([])
 
     widget = HomeWidget()
     widget.resize(1600, 900)
-
-    centerPoint = QtGui.QScreen.availableGeometry(QtWidgets.QApplication.primaryScreen()).center()
-    fg = widget.frameGeometry()
-    fg.moveCenter(centerPoint)
-    widget.move(fg.topLeft())
-
     widget.show()
+    center_widget_on_screen(widget)
     sys.exit(qtapp.exec())
 
 
