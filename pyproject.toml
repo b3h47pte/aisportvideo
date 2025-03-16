@@ -5,8 +5,13 @@ description = "Tool to help you auto-clip sport videos."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "huggingface-hub>=0.29.3",
+    "onnx>=1.17.0",
+    "onnxruntime>=1.21.0",
+    "onnxslim>=0.1.48",
     "pyside6>=6.8.2.1",
     "typer>=0.15.2",
+    "ultralytics>=8.3.91",
 ]
 
 [tool.ruff]
@@ -14,7 +19,7 @@ line-length = 100
 target-version = "py313"
 
 [tool.ruff.lint]
-select = ["E", "F", "W", "I", "FA", "DTZ", "INP", "LOG", "T20", "SIM", "TC"]
+select = ["E", "EM", "F", "W", "I", "FA", "DTZ", "INP", "LOG", "T20", "SIM", "TC"]
 
 [tool.pyright]
 include = ["src"]
