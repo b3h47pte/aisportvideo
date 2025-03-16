@@ -3,5 +3,24 @@ name = "aisportvideo"
 version = "0.1.0"
 description = "Tool to help you auto-clip sport videos."
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = []
+requires-python = ">=3.13"
+dependencies = [
+    "pyside6>=6.8.2.1",
+    "typer>=0.15.2",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "FA", "DTZ", "INP", "LOG", "T20", "SIM", "TC"]
+
+[tool.pyright]
+include = ["src"]
+pythonVersion = "3.13"
+pythonPlatform = "Darwin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
