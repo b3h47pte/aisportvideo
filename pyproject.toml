@@ -37,3 +37,6 @@ pythonVersion = "3.13"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build]
+packages = ["src/aisportvideo", "src/sbdt"]
