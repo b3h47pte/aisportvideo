@@ -94,7 +94,7 @@ def _draw_yolo_boxes_on_bgr_image(boxes: Boxes, *, img: np.ndarray, class_mappin
             thickness=5,
         )
 
-        id_text = f"Class: {class_mapping[cls]} (ID: {id})"
+        id_text = f"Class: {class_mapping[cls]} (ID: {id}) - Conf: {b.conf.item():.2f}"
         (_, height), _ = cv2.getTextSize(
             id_text,
             fontFace=cv2.FONT_HERSHEY_SIMPLEX,
