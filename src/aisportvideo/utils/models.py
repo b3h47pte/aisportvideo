@@ -5,6 +5,10 @@ class ModelType(StrEnum):
     ONNX = "onnx"
     COREML_PACKAGE = "mlpackage"
 
+    @property
+    def extension(self) -> str:
+        return f".{self.value}"
+
 _EXTENSION_MAPPING = {
     model_type.value: model_type
     for model_type in ModelType

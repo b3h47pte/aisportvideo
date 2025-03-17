@@ -1,1 +1,2 @@
-models/yolo11s.onnx filter=lfs diff=lfs merge=lfs -text
+src/aisportvideo/assets/yolo11s.onnx filter=lfs diff=lfs merge=lfs -text
+src/aisportvideo/assets/__init__.py filter=lfs diff=lfs merge=lfs -text
