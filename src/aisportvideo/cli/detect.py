@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 import typer
 
+from aisportvideo.models.huggingface import HuggingFaceSupportedModels
 from aisportvideo.models.ultralytics import UltralyticsSupportedModels
 
 app = typer.Typer()
@@ -51,11 +52,32 @@ def detect_objects_ultralytics(
 
         results = model.track(frame_img, persist=True)
 
-        viz_img = (
-            visualize_ultralytics_results_on_bgr_image(results, img=frame_img)
-            if results
-            else frame_img
-        )
         if visualize:
+            viz_img = (
+                visualize_ultralytics_results_on_bgr_image(results, img=frame_img)
+                if results
+                else frame_img
+            )
             cv2.imshow("test", viz_img)
+            cv2.waitKey(0)
+
+@app.command(name="object_hf")
+def detect_objects_huggingface(
+    path: Annotated[Path, typer.Argument(help="Path to the video file")],
+    visualize: Annotated[bool, typer.Option(help="Visualize the detection results")] = False,
+    model_type: Annotated[
+        HuggingFaceSupportedModels, typer.Option(help="Model to use")
+    ] = HuggingFaceSupportedModels.DETR_TENNIS_BALL,
+):
+    from aisportvideo.models.huggingface import load_hf_pipeline, visualize_hf_results
+
+    pipeline = load_hf_pipeline(model_type)
+    container = av.open(path)
+    for frame in container.decode(video=0):
+        frame_img = frame.to_image()
+        results = pipeline(frame_img)
+
+        if visualize:
+            viz_img = visualize_hf_results(frame_img, results=results, model=model_type)
+            cv2.imshow("test", viz_img[:, :, ::-1])
             cv2.waitKey(0)
