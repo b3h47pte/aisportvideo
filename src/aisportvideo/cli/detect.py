@@ -1,6 +1,9 @@
 from pathlib import Path
 from typing import Annotated
 
+import av
+import cv2
+import numpy as np
 import typer
 
 from aisportvideo.models.ultralytics import UltralyticsSupportedModels
@@ -16,10 +19,6 @@ def detect_objects_ultralytics(
         UltralyticsSupportedModels, typer.Option(help="Model to use")
     ] = UltralyticsSupportedModels.YOLO,
 ):
-    import av
-    import cv2
-    import numpy as np
-
     from aisportvideo.models.rtdetr import RtDetrModelSize, load_rtdetr_from_assets
     from aisportvideo.models.ultralytics import visualize_ultralytics_results_on_bgr_image
     from aisportvideo.models.yolo import (
