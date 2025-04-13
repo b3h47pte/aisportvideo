@@ -1,4 +1,5 @@
 import logging
+
 import typer
 
 from aisportvideo.cli.detect import app as detect_app

@@ -8,8 +8,8 @@ from aisportvideo.models.ultralytics import UltralyticsSupportedModels
 app = typer.Typer()
 
 
-@app.command(name="object")
-def detect_objects(
+@app.command(name="object_ultra")
+def detect_objects_ultralytics(
     path: Annotated[Path, typer.Argument(help="Path to the video file")],
     visualize: Annotated[bool, typer.Option(help="Visualize the detection results")] = False,
     model_type: Annotated[
